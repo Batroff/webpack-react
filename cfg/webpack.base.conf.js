@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const PATHS = {
   src: path.join(__dirname, '../src'),
@@ -27,6 +26,24 @@ module.exports = {
     paths: PATHS
   },
 
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        node_vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: "all",
+          priority: 1
+        },
+      },
+    }
+  },
+
+  resolve: {
+    alias: {
+      '~': PATHS.src
+    }
+  },
+
   module: {
     rules: [
       {
@@ -48,7 +65,6 @@ module.exports = {
   },
 
   plugins: [
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new webpack.NoEmitOnErrorsPlugin(),
     new CopyWebpackPlugin({
       patterns: [
@@ -58,7 +74,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       hash: true,
       template: `${PATHS.src}\\index.html`,
-      filename: "index.html"
+      filename: "index.html",
+      inject: 'body'
     }),
   ]
 }

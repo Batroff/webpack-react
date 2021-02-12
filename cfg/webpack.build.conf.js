@@ -2,6 +2,7 @@ const {merge} = require('webpack-merge');
 const baseConfig = require('./webpack.base.conf');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const buildConfig = {
   mode: 'production',
@@ -13,18 +14,10 @@ const buildConfig = {
         exclude: /\/node_modules/
       }),
     ],
-    // splitChunks: {
-    //   cacheGroups: {
-    //     node_vendors: {
-    //       test: /[\\/]node_modules[\\/]/,
-    //       chunks: "all",
-    //       priority: 1
-    //     },
-    //   },
-    // }
   },
 
   plugins: [
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
     })
