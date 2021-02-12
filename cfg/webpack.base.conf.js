@@ -5,8 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const PATHS = {
-  src: path.join(__dirname, 'src'),
-  dist: path.join(__dirname, 'dist'),
+  src: path.join(__dirname, '../src'),
+  dist: path.join(__dirname, '../dist'),
   assets: 'assets/'
 }
 
@@ -16,8 +16,11 @@ module.exports = {
   },
   output: {
     path: PATHS.dist,
-    filename: '[name].[hash].js',
+    filename: '[name].[contenthash].js',
+
+    // ** CREATES [name] library ** //
     // library: '[name]'
+    // **************************** //
   },
 
   externals: {
