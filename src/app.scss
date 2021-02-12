@@ -1,12 +1,16 @@
 body, html {
   margin: 0;
   padding: 0;
+  background: #383838;
 }
 
 * {
   box-sizing: border-box;
 }
 
-.block {
+#root {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vmin;
 }

@@ -1,7 +1,7 @@
 const ReactDOM = require('react-dom');
 const React = require('react');
 
-import {FilterableProductTable} from "./components/FilterableProductTable.jsx";
+import {FilterableProductTable} from "./components/FilterableProductTable/FilterableProductTable.jsx";
 import './app.scss';
 
 const obj = [

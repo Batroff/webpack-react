@@ -17,7 +17,7 @@ export class SearchBar extends React.Component {
   }
 
   render() {
-    return (<div>
+    return (<div className="search">
       <input type="search"
              placeholder="Search..."
              onChange={this.searchHandler}
