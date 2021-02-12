@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const PATHS = {
   src: path.join(__dirname, 'src'),
@@ -44,6 +45,7 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new webpack.NoEmitOnErrorsPlugin(),
     new CopyWebpackPlugin({
       patterns: [
@@ -54,6 +56,6 @@ module.exports = {
       hash: true,
       template: `${PATHS.src}\\index.html`,
       filename: "index.html"
-    })
+    }),
   ]
 }
