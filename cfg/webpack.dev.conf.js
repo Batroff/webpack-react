@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const {merge} = require('webpack-merge');
-const baseConfig = require('../webpack.base.conf');
+const baseConfig = require('./webpack.base.conf');
 
 const devConfig = {
   mode: 'development',
@@ -35,19 +35,7 @@ const devConfig = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
-          }
-        ],
-      },
-      {
-        test: /\.(sc|sa)ss$/,
+        test: /\.(c|sc|sa)ss$/,
         use: [
           'style-loader',
           {

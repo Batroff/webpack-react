@@ -1,5 +1,5 @@
 const {merge} = require('webpack-merge');
-const baseConfig = require('../webpack.base.conf');
+const baseConfig = require('./webpack.base.conf');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -26,23 +26,14 @@ const buildConfig = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css'
+      filename: '[name].[contenthash].css'
     })
   ],
 
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader'
-        ],
-      },
-
-      {
-        test: /\.(sc|sa)ss?$/,
+        test: /\.(c|sc|sa)ss?$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
